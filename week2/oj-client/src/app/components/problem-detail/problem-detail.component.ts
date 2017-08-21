@@ -10,16 +10,15 @@ import { Problem } from '../../data-structure/problem';
 })
 export class ProblemDetailComponent implements OnInit {
   problem: Problem;
-
   constructor(
     private route: ActivatedRoute,
     @Inject('data') private dataService
-  ) { }
+  ) { };
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.problem = this.dataService.getProblem(+params['id']);
-    })
-  }
-
-}
+      this.dataService.getProblem(+params['id'])
+        .then(problem => this.problem = problem);
+    });
+  };
+};

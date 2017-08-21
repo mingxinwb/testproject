@@ -12,7 +12,7 @@ router.get('/problems', (req, res) => {
         .then(problems => res.json(problems));
 });
 
-// GET /api/v1/problems/:id
+// GET /api/v1/problem/:id
 router.get('/problem/:id', (req, res) => {
     const id = req.params.id;
     problemService.getProblem(+id)

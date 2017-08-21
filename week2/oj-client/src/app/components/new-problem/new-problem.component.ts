@@ -6,7 +6,8 @@ const DEFAULT_PROBLEM: Problem = Object.freeze({
   name: '',
   desc: '',
   difficulty: 'easy'
-}) 
+});
+
 @Component({
   selector: 'app-new-problem',
   templateUrl: './new-problem.component.html',
@@ -15,13 +16,14 @@ const DEFAULT_PROBLEM: Problem = Object.freeze({
 export class NewProblemComponent implements OnInit {
   newProblem: Problem = Object.assign({}, DEFAULT_PROBLEM);
   difficulties: String[] = ['easy', 'medium', 'hard', 'super'];
-  constructor(@Inject('data') private dataService ) { }
+  constructor(@Inject('data') private dataService ) { };
 
   ngOnInit() {
-  }
+  };
   
   addProblem() {
-    this.dataService.addProblem(this.newProblem);
+    this.dataService.addProblem(this.newProblem)
+      .catch(error => console.log(error.body));
     this.newProblem = Object.assign({}, DEFAULT_PROBLEM);
-  }
-}
+  };
+};

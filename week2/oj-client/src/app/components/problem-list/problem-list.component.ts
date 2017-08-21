@@ -6,16 +6,18 @@ import { Problem } from '../../data-structure/problem';
   templateUrl: './problem-list.component.html',
   styleUrls: ['./problem-list.component.css']
 })
+
 export class ProblemListComponent implements OnInit {
   problems: Problem[];
-  constructor(@Inject('data') private dataService) { }
+  constructor(@Inject('data') private dataService) { };
 
   ngOnInit() {
     this.getProblems();
-  }
+  };
 
   getProblems(): void {
-    this.problems = this.dataService.getProblems();
-  }
+    this.dataService.getProblems()
+      .subscribe(problems => this.problems = problems);
+  };
 
-}
+};
