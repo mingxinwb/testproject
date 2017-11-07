@@ -1,8 +1,8 @@
+# bittigercs503-1703
 How do I get set up?
 
 Summary of set up for first Project: Collaborative Online Judge
-
-Install NodeJs:
+# Install NodeJs:
 
 sudo apt-get update
 
@@ -10,19 +10,19 @@ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 
 sudo apt-get install -y nodejs
 
-Install Nodemon
+# Install Nodemon
 
 sudo npm install -g nodemon
 
-Install git
+# Install git
 
 sudo apt-get install git
 
-Install angular/cli
+# Install angular/cli
 
 sudo npm install -g @angular/cli
 
-Install Redis
+# Install Redis
 
 wget http://download.redis.io/releases/redis-3.2.6.tar.gz
 
@@ -38,9 +38,9 @@ cd utils
 
 sudo ./install_server.sh
 
-Install python 2.7: This is installed already in Ubuntu
+# Install python 2.7: This is installed already in Ubuntu
 
-Install pip:
+# Install pip:
 
 (sudo apt-get update)
 
@@ -48,7 +48,7 @@ sudo apt install python-pip
 
 sudo pip install Flask
 
-Install Docker:
+# Install Docker:
 
 curl -fsSL https://get.docker.com/ | sh
 
@@ -60,8 +60,7 @@ sudo usermod -aG docker $(whoami)
 
 To start docker when the system boots: sudo systemctl enable docker
 
-Install Nginx
-
+# Install Nginx
 (For ubuntu 16.04) Add following two lines into /etc/apt/sources.list
 
 deb http://nginx.org/packages/ubuntu/ xenial nginx
@@ -74,8 +73,7 @@ sudo apt-get update
 
 sudo apt-get install nginx
 
-FAQ
-
+# FAQ
 I failed to install newspaper package. It shows errors like 'could not build the egg.'
 
 This is because an error when installing nltk dependency. Try following commands:
@@ -90,12 +88,16 @@ $ sudo install —upgrade setuptools
 
 $ sudo pip install newspaper
 
-If above still not works, try these: (Thanks to mwangxx0129)
 
-Remove the repository version $ sudo apt-get remove python-setup tools
+**If above still not works, try these:** (Thanks to mwangxx0129)
+1. Remove the repository version
+$ sudo apt-get remove python-setup tools
 
-if necessary, install pip again $ wget https://bootstrap.pypa.io/get-pip.py; $ sudo -H python get-pip.py
+2. if necessary, install pip again
+$ wget https://bootstrap.pypa.io/get-pip.py;
+$ sudo -H python get-pip.py
 
-install setuptools via pip $ sudo -H pip install -U pip setuptools
+3. install setuptools via pip
+$ sudo -H pip install -U pip setuptools
 
-still failed repeat from start again
+4. still failed repeat from start again
