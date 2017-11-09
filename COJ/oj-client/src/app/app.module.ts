@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { CollaborationService } from './services/collaboration.service';
 import { DataService } from './services/data.service';
 import { ProblemListComponent } from './components/problem-list/problem-list.component';
 import { ProblemDetailComponent } from './components/problem-detail/problem-detail.component';
@@ -29,7 +30,8 @@ import { EditorComponent } from './components/editor/editor.component';
     routing
   ],
   providers: [
-   DataService
+    CollaborationService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
