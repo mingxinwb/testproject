@@ -261,6 +261,7 @@ var EditorComponent = (function () {
             console.log('cursor from log from client ' + JSON.stringify(cursor));
             _this.collaboration.cursorMove(JSON.stringify(cursor));
         });
+        this.collaboration.restoreBuffer();
     };
     EditorComponent.prototype.resetEditor = function () {
         this.editor.setValue(this.defaultContent[this.language]);
@@ -642,6 +643,9 @@ var CollaborationService = (function () {
         this.collaborationSocket.emit('cursorMove', cursor);
     };
     ;
+    CollaborationService.prototype.restoreBuffer = function () {
+        this.collaborationSocket.emit('restoreBuffer');
+    };
     CollaborationService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [])
