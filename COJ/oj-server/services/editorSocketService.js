@@ -4,10 +4,6 @@ module.exports = function(io) {
     const socketIdToSessionId = {};
 
     io.on('connection', (socket) => {
-        // console.log(socket);
-        // const message = socket.handshake.query['message'];
-        // console.log(message);
-        // io.to(socket.id).emit('message', 'hey from server');
         const sessionId = socket.handshake.query['sessionId'];
         socketIdToSessionId[socket.id] = sessionId;
 
@@ -20,15 +16,28 @@ module.exports = function(io) {
 
         socket.on('change', delta => {
             console.log('change' + socketIdToSessionId[socket.id] + ' ' +delta);
-            const sessionId = socketIdToSessionId[socket.id];
-            if (sessionId in collaborations) {
-                const participants = collaborations[sessionId]['participants'];
-                for (let participant of participants) {
-                    if (socket.id != participant) {
-                        io.to(participant).emit('change', delta);
-                    }
+            forwardEvent(socket.id, 'change', delta);            
+        });
+
+        socket.on('cursorMove', cursor => {
+            console.log('cursorMove' + socketIdToSessionId[socket.id] + ' ' +cursor);
+            cursor = JSON.parse(cursor);
+            cursor['socketId'] = socket.id;
+            forwardEvent(socket.id, 'cursorMove', JSON.stringify(cursor));
+        });
+    });
+
+    const forwardEvent = function(socketId, eventName, dataString) {
+        const sessionId = socketIdToSessionId[socketId];
+        if (sessionId in collaborations) {
+            const participants = collaborations[sessionId]['participants'];
+            for (let participant of participants) {
+                if (socketId != participant) {
+                    io.to(participant).emit(eventName, dataString);
                 }
             }
-        })
-    });
+        } else {
+            console.warn('WARNING');
+        }
+    }
 }
